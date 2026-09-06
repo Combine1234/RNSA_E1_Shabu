@@ -60,12 +60,32 @@ there is no reliable remaining-quota counter committed here. The target
 accelerator was T4 x2 (`NvidiaTeslaT4` in metadata), not paid infrastructure.
 
 Original workstation source root: `/home/monkey/Documents/Healtcare`.
-Approved external-disk root: `/media/monkey/PortableSSD/Healtcare/rsna-knee/`.
-On another machine, do not assume this mount exists or that a same-named folder
-is an external disk; verify it before use. No raw DICOM, pixel-cache NPY/NPZ, or
-large checkpoints are to be downloaded locally. Small JSON/CSV/log audits may
-go into `/tmp` or the approved disk, outside Git. `/tmp` is disposable and some
-older audit/bundle directories disappeared after reboot.
+Original external-disk root: `/media/monkey/PortableSSD/Healtcare/rsna-knee/`.
+**User update on 2026-09-06: the new machine may have no SSD attached; the agent
+may choose suitable local storage automatically without asking for that mount.**
+No raw DICOM, pixel-cache NPY/NPZ, or large checkpoints are to be downloaded
+locally. The storage permission applies to source/configuration and small
+JSON/CSV/log audits, not to moving heavy data/compute off Kaggle.
+
+For persistent small audits, choose a writable, user-owned application-data
+directory outside the Git checkout, for example:
+
+- Linux: `$XDG_DATA_HOME/rsna-knee/audits`, or
+  `$HOME/.local/share/rsna-knee/audits` if XDG_DATA_HOME is unset.
+- macOS: `$HOME/Library/Application Support/rsna-knee/audits`.
+- Windows: `%LOCALAPPDATA%\\rsna-knee\\audits`.
+
+Resolve the actual OS/user paths rather than copying these strings blindly.
+Check free space and writability, keep medical audit files out of shared or
+cloud-synced folders, and restrict directory access to the current user where
+supported. If the preferred directory is unavailable, choose another suitable
+local user-owned directory outside Git; do not delete unrelated files to make
+room. Record the resolved location in a local note outside Git and tell the user
+which directory was selected. No need to ask merely because an SSD is absent.
+Use the OS temporary directory for disposable source bundles/logs. Temporary
+files may disappear after reboot; keep resume-critical small evidence in the
+persistent audit directory. Do not create the old `/media/...` path to pretend
+an external drive is mounted. Large artifacts remain on Kaggle in all cases.
 
 The user explicitly authorized the first competition Submit, which has already
 happened. That approval does not authorize additional submissions. Current

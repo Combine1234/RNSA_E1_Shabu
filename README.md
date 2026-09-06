@@ -68,14 +68,16 @@ The Kaggle deployment runbook is in `kaggle/README.md`.
 ## Storage boundary
 
 Raw DICOM, pixel caches and large checkpoints must remain on Kaggle. Only small
-JSON/CSV/log diagnostics may be retrieved into `/tmp` or the approved external
-disk, outside Git. The original machine's approved disk root was:
+JSON/CSV/log diagnostics may be retrieved into an automatically selected writable
+directory outside Git. An SSD is optional. Prefer a user-owned application-data
+directory for persistent audits and the OS temporary directory for disposable
+files; check space and record the path locally. The original disk root was:
 
 ```text
 /media/monkey/PortableSSD/Healtcare/rsna-knee/
 ```
 
-Verify the external mount on a new machine. Never commit study identifiers,
+Do not require or recreate that mount path on a new machine. Never commit study identifiers,
 reports, row-level labels/predictions or authentication files, even if the repo
 is made private later. A second competition submission needs new user approval.
 

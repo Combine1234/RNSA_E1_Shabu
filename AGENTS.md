@@ -12,9 +12,13 @@ machine. `docs/report-source.md` is an earlier research snapshot, not live statu
   and inference. Keep workstation work to source/config/docs and short tests.
 - Do not download raw DICOM, pixel NPY/NPZ caches, or large model artifacts to
   the workstation. Read small JSON/CSV/log outputs using an explicit allowlist
-  into `/tmp` or the user-approved Portable SSD. Do not download all kernel
-  outputs. SSD path on the original machine:
-  `/media/monkey/PortableSSD/Healtcare/rsna-knee/`.
+  into an automatically selected writable directory outside Git. An SSD is
+  optional: the user explicitly authorized choosing local storage on the new
+  machine. Prefer a user-owned application-data directory for persistent small
+  audits, or the OS temporary directory for disposable files. Check free space,
+  restrict access to the current user where supported, and record the resolved
+  path locally. Do not download all kernel outputs. The original SSD path
+  `/media/monkey/PortableSSD/Healtcare/rsna-knee/` is historical, not required.
 - The Git repository may be public. Never commit credentials, reports, study
   identifiers, row-level labels/predictions, medical images, caches or weights.
   Making a repository private later does not undo prior exposure.
