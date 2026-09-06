@@ -1,0 +1,13 @@
+{
+  "id": "__KAGGLE_USERNAME__/rsna-knee-01a-llm-probe",
+  "title": "RSNA Knee 01a LLM Probe",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "enable_internet": true,
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": ["__KAGGLE_USERNAME__/rsna-knee-code"]
+}

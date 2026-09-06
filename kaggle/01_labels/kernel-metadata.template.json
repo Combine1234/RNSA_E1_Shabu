@@ -1,0 +1,17 @@
+{
+  "id": "__KAGGLE_USERNAME__/rsna-knee-01-labels",
+  "title": "RSNA Knee 01 Labels",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["rsna-knee-abnormality-detection"],
+  "dataset_sources": [
+    "__KAGGLE_USERNAME__/rsna-knee-code",
+    "pilkwang/rsna-knee-llm-labels",
+    "lixin73/rsna-knee-llm-report-labels-sol56",
+    "stevenleehans/rsna-knee-llm-report-labels"
+  ]
+}

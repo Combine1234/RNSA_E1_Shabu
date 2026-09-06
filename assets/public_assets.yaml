@@ -1,0 +1,43 @@
+snapshot_date: 2026-09-05
+anchors:
+  - name: Head and shoulders, knees and toes
+    url: https://www.kaggle.com/code/prvsiyan/head-and-shoulders-knees-and-toes
+    pinned_version: 38
+    reported_public_auc: 0.936
+    notebook_license: Apache-2.0
+    use: reproducibility anchor only; component checkpoints require individual audit
+  - name: Raptor Knee MaxSpan
+    url: https://www.kaggle.com/datasets/dreaddevelopment/raptor-knee-maxspan
+    dataset_license: CC0-1.0
+    use: public preprocessing reference only; this dataset is not the model weights
+  - name: Raptor Knee WideDense weights
+    url: https://www.kaggle.com/datasets/dreaddevelopment/raptor-knee-widedense
+    reported_public_auc: 0.924
+    dataset_license: CC0-1.0
+    use: optional CoAtNet initialization after state-dict compatibility preflight
+  - name: DINOv2 Small LVD-142M
+    url: https://huggingface.co/timm/vit_small_patch14_dinov2.lvd142m
+    model_license: Apache-2.0
+    use: Model A encoder initialization
+  - name: timm CoAtNet RMLP 2 IN12K/IN1K
+    url: https://huggingface.co/timm/coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k
+    model_license: Apache-2.0
+    use: explicit fallback only if the CC0 Raptor state-dict compatibility preflight fails
+excluded:
+  - name: RadImageNet ResNet-50 checkpoint
+    reason: CC-BY-NC-SA provenance is not cleanly compatible with all winner obligations
+    action: do not include in final submission without written host clarification
+  - name: Barun stratified folds and LLM soft labels
+    url: https://www.kaggle.com/datasets/barun2104/rsna-knee-stratified-folds-and-llm-soft-labels
+    reason: license is only declared as other and its pseudo columns exactly reproduce all available gold labels
+    action: exclude from training and gold-label auditing
+label_sources:
+  - url: https://www.kaggle.com/datasets/pilkwang/rsna-knee-llm-labels
+  - url: https://www.kaggle.com/datasets/lixin73/rsna-knee-llm-report-labels-sol56
+  - url: https://www.kaggle.com/datasets/stevenleehans/rsna-knee-llm-report-labels
+open_llm:
+  model: https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct
+  revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+  license: Apache-2.0
+  audit_result: rejected; 2.45% parse failures and -0.01337 paired gold macro-AUC delta
+  use: provenance record only; excluded from the selected label ensemble

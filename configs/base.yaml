@@ -1,0 +1,80 @@
+seed: 20260905
+labels:
+  gold_weight: 4.0
+  unknown_value: 0.5
+  synovitis_effusion_weight: 0.55
+  minimum_gold_auc: 0.89
+  rank_normalize_sources: true
+  minimum_llm_gold_gain: 0.002
+open_llm:
+  model: Qwen/Qwen2.5-1.5B-Instruct
+  revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+  license: Apache-2.0
+  batch_size_per_gpu: 4
+  max_input_tokens: 1536
+  max_new_tokens: 40
+  positive_probability: 0.9
+  negative_probability: 0.1
+  addressed_confidence: 0.75
+  maximum_parse_failure_rate: 0.02
+folds:
+  count: 5
+  report_hash_normalize: true
+cache:
+  image_size: 336
+  crop_mm: 150.0
+  slices_per_slot: 11
+  minimum_valid_study_fraction: 0.98
+  slots:
+    - [Sagittal, 1]
+    - [Sagittal, 0]
+    - [Coronal, 1]
+    - [Coronal, 0]
+    - [Axial, 1]
+    - [Axial, 0]
+  edge_fraction: 0.02
+  percentile_low: 0.5
+  percentile_high: 99.5
+  shard_studies: 128
+model_a:
+  family: dino
+  backbone: vit_small_patch14_dinov2.lvd142m
+  image_size: 224
+  last_blocks_trainable: 6
+  epochs: 12
+  minimum_epochs: 4
+  early_stopping_patience: 3
+  batch_size: 2
+  io_block_size: 64
+  head_lr: 0.0003
+  backbone_lr: 0.000003
+  weight_decay: 0.05
+model_b:
+  family: coatnet
+  backbone: coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k
+  image_size: 320
+  last_blocks_trainable: -1
+  epochs: 10
+  minimum_epochs: 4
+  early_stopping_patience: 3
+  batch_size: 2
+  io_block_size: 64
+  feature_batch_size: 8
+  head_batch_size: 256
+  frozen_head_epochs: 40
+  frozen_head_minimum_epochs: 12
+  frozen_head_patience: 6
+  frozen_head_lr: 0.001
+  head_lr: 0.0002
+  backbone_lr: 0.000002
+  weight_decay: 0.05
+inference:
+  test_studies: 1322
+  benchmark_sample_studies: 132
+  runtime_limit_seconds: 27000
+  hard_stop_seconds: 30600
+  tta_offsets: [-2, 0, 2]
+blend:
+  grid_step: 0.05
+  minimum_pseudo_gain: 0.002
+  maximum_gold_drop: 0.01

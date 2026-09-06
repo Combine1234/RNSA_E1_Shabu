@@ -1,0 +1,17 @@
+{
+  "id": "__KAGGLE_USERNAME__/rsna-knee-03-train-dino",
+  "title": "RSNA Knee 03 Train DINO",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "enable_internet": true,
+  "dataset_sources": ["__KAGGLE_USERNAME__/rsna-knee-code"],
+  "kernel_sources": [
+    "__KAGGLE_USERNAME__/rsna-knee-01c-labels-plus-open-llm",
+    "__KAGGLE_USERNAME__/rsna-knee-02-cache-0",
+    "__KAGGLE_USERNAME__/rsna-knee-02-cache-1"
+  ]
+}
